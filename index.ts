@@ -145,6 +145,10 @@ function downloadImage(url: string): Promise<string> {
 
     return new Promise((promiseResolve, promiseReject) => {
 
+        if (/^(\/|[A-Za-z]:[\/¥])/.test(url)) {
+            promiseResolve(url)
+        }
+
         if (!/^https?:\/\//.test(url)) {
             promiseReject(new Error(`Invalid url ${url}`));
         }
